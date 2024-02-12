@@ -1,0 +1,23 @@
+[
+  {
+    "DatosRegistro": {
+      "Nombres": "Jose Elver",
+      "Apellidos": "Arturo",
+      "NumeroDocumento": "1114256324",
+      "Anio": "1999",
+      "Mes": "03",
+      "Dia": "01",
+      "Celular": "3177959664",
+      "Correo": "proyectofavoritappgrupo1@gmail.com",
+      "Clave": "Jose@123"
+    },
+    "DatosCompra": {
+      "Ciudad": "Cali",
+      "Almacen": "Exito Chipichape"
+    },
+    "ObtenerToken": {
+      "Email": "proyectofavoritappgrupo1@gmail.com",
+      "Password": "bvhv wstb axmw umak"
+    }
+  }
+]

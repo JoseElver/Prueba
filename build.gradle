@@ -1,0 +1,73 @@
+group 'app.exito'
+version '1.0-SNAPSHOT'
+
+description = 'Proyecto Base Appium'
+
+apply plugin: 'groovy'
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'application'
+apply plugin: 'java-library'
+apply plugin: 'jacoco'
+apply plugin: 'maven-publish'
+apply plugin: "net.serenity-bdd.serenity-gradle-plugin"
+
+compileJava.options.encoding = "UTF-8"
+compileTestJava.options.encoding = "UTF-8"
+def versionSerenity = '4.0.19'
+def versionCucumber = '7.6.0'
+def versionSunMail = '1.6.2'
+def versionEnsure='3.2.0'
+
+repositories {
+    mavenCentral()
+}
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+}
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "net.serenity-bdd:serenity-gradle-plugin:4.0.19"
+    }
+}
+dependencies {
+    implementation 'net.serenity-bdd:serenity-cucumber:4.0.19'
+    implementation group: 'io.cucumber', name: 'datatable', version: "${versionCucumber}"
+    testImplementation group: 'io.cucumber', name: 'cucumber-junit', version: "${versionCucumber}"
+    implementation group: 'net.serenity-bdd', name: 'serenity-screenplay', version: "${versionSerenity}"
+    implementation group: 'net.serenity-bdd', name: 'serenity-screenplay-webdriver', version: "${versionSerenity}"
+    implementation group: 'net.serenity-bdd', name: 'serenity-junit', version: "${versionSerenity}"
+    implementation group: 'net.serenity-bdd', name: 'serenity-core', version: "${versionSerenity}"
+    implementation "net.serenity-bdd:serenity-ensure:${versionEnsure}"
+    implementation group: 'net.serenity-bdd', name: 'serenity-report-resources', version: "${versionSerenity}"
+    implementation group: 'org.mockito', name: 'mockito-core', version: '3.12.4'
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.8.2'
+    implementation 'io.appium:java-client:9.1.0'
+    implementation 'org.json:json:20210307'
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: '2.0.0-alpha5'
+    implementation group: 'org.slf4j', name: 'slf4j-simple', version: '2.0.0-alpha5'
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.18.0'
+    implementation "com.sun.mail:javax.mail:${versionSunMail}"
+    implementation "com.sun.mail:smtp:${versionSunMail}"
+    implementation "com.sun.mail:imap:${versionSunMail}"
+    implementation 'javax.activation:activation:1.1.1'
+
+}
+test {
+    useJUnit {
+        include "*/";
+        gradle.startParameter.continueOnFailure = true
+        testLogging.showStandardStreams = true
+        systemProperties System.getProperties()
+        systemProperty "cucumber.filter.tags", System.getProperty("cucumber.filter.tags")
+    }
+
+}
